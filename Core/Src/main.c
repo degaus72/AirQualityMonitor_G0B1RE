@@ -51,6 +51,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+// Declare SPI and I2C handles from CubeIDE generated code
+extern SPI_HandleTypeDef hspi1;
+extern I2C_HandleTypeDef hi2c1;
 
 /* USER CODE END PV */
 
@@ -97,7 +100,16 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
+
   /* USER CODE BEGIN 2 */
+  ST7789_Init(&hspi1); // Initialize the display
+
+  ST7789_FillScreen(ST7789_BLUE);
+    HAL_Delay(500);
+    ST7789_WriteString(10, 10, "Hello, Gemini!", &Font16, ST7789_WHITE, ST7789_BLUE);
+    ST7789_WriteString(10, 40, "STM32 NUCLEO-G0B1RE", &Font16, ST7789_YELLOW, ST7789_BLUE);
+    ST7789_WriteString(10, 60, "Waveshare 1.69inch LCD", &Font16, ST7789_GREENYELLOW, ST7789_BLUE);
+    ST7789_WriteString(10, 90, "Display Demo", &Font16, ST7789_CYAN, ST7789_BLUE);
 
   /* USER CODE END 2 */
 
